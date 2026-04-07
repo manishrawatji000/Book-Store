@@ -105,63 +105,6 @@ The project was built to learn and demonstrate real-world full-stack development
 
 ---
 
-## 🗄️ Database Models
-
-### User Model
-```javascript
-{
-  username: String (unique, required),
-  email: String (unique, required),
-  password: String (hashed, required),
-  address: {
-    street: String,
-    city: String,
-    state: String,
-    postalCode: String,
-    country: String
-  },
-  phoneNumber: String,
-  avatar: String (default image URL),
-  role: String (enum: ["user", "admin"], default: "user"),
-  favourites: [ObjectId → Book],
-  cart: [ObjectId → Book],
-  orders: [ObjectId → Order],
-  timestamps: true
-}
-```
-
-### Book Model
-```javascript
-{
-  url: String (required),        // Image URL
-  title: String (required),
-  author: String (required),
-  price: Number (required),
-  desc: String (required),
-  language: String (required),
-  genre: String (required),
-  timestamps: true
-}
-```
-
-### Order Model
-```javascript
-{
-  user: ObjectId → User,
-  book: ObjectId → Book,
-  quantity: Number (default: 1),
-  status: String (enum: [
-    "OrderPlaced",
-    "Shipped", 
-    "Pending",
-    "Delivered",
-    "Cancelled"
-  ], default: "Pending"),
-  timestamps: true
-}
-```
-
----
 
 
 ## 🚀 Getting Started
@@ -216,20 +159,6 @@ cd Frontend
 npm run dev
 ```
 > App starts at `http://localhost:5173`
-
----
-
-## 🔐 Environment Variables
-
-### Backend (`Backend/.env`)
-
-| Variable | Description | Example |
-|---|---|---|
-| `PORT` | Port for the Express server | `1000` |
-| `URL` | MongoDB connection string | `mongodb+srv://user:pass@cluster.mongodb.net/bookyverse` |
-| `JWT_SECRET` | Secret key for signing JWT tokens | `your_super_secret_key_here` |
-
-> ⚠️ Never commit your `.env` file. It is already listed in `.gitignore`.
 
 ---
 
